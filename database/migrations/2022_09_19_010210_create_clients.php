@@ -18,7 +18,7 @@ class CreateClients extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
-            $table->string('birthday');
+            $table->timestamp('birthday');
             $table->timestamps();
         });
     }
