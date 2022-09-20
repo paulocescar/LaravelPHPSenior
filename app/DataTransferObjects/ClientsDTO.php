@@ -11,8 +11,9 @@ use Spatie\DataTransferObject\DataTransferObject;
 class ClientsDTO extends DataTransferObject
 {
     public string $name;
-    public string $email;
+    public ?string $email;
     public string $cpf;
-    public string $birthday;
     
+    #[MapFrom('dt_aniversario')]
+    public string $birthday;
 }
