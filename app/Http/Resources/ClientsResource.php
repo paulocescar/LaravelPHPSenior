@@ -15,7 +15,7 @@
             return [
                 'name'      => $this->name,
                 'email'     => $this->email,
-                'cpf'       => $this->cpf,
+                'cpf'       => $this->cpf,  
                 'birthday'  => $this->birthday
             ];
         }
