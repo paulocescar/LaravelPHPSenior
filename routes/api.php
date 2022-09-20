@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/clients', [App\Http\Controllers\ClientsController::class, 'get']);
-Route::get('/clients/{id}', [App\Http\Controllers\ClientsController::class, 'getById']);
-Route::post('/clients', [App\Http\Controllers\ClientsController::class, 'store']);
-Route::put('/clients/{id}', [App\Http\Controllers\ClientsController::class, 'updateById']);
-Route::delete('/clients/{id}', [App\Http\Controllers\ClientsController::class, 'deleteById']);
+
+Route::prefix('clients')->group(function () {
+    Route::get('/', [App\Http\Controllers\ClientsController::class, 'get']);
+    Route::post('', [App\Http\Controllers\ClientsController::class, 'store']);
+    Route::get('/{id}', [App\Http\Controllers\ClientsController::class, 'getById']);
+    Route::put('/{id}', [App\Http\Controllers\ClientsController::class, 'updateById']);
+    Route::delete('/{id}', [App\Http\Controllers\ClientsController::class, 'deleteById']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
