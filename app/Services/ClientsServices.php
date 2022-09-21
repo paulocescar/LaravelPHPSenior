@@ -18,7 +18,7 @@ class ClientsServices
     }
 
     public function get(){
-        return $this->clientsRepository->get();
+        return $this->clientsRepository->getWith();
     }
     
     public function getById($id){

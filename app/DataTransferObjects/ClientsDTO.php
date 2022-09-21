@@ -13,6 +13,7 @@ class ClientsDTO extends DataTransferObject
     public string $name;
     public ?string $email;
     public string $cpf;
+    public int $address_id;
     
     #[MapFrom('dt_aniversario')]
     public string $birthday;

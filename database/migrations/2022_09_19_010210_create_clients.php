@@ -14,10 +14,12 @@ class CreateClients extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
+            $table->bigInteger('address_id')->unsigned()->nullable();
+            $table->foreign('address_id')->references('id')->on('addresses')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('birthday');
             $table->timestamps();
         });

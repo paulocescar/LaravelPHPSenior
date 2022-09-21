@@ -18,4 +18,8 @@ class ClientsRepository extends BaseRepository
     {
         return Clients::class;
     }
+
+    public function getWith(){
+        return Clients::with(['address'])->get();
+    }
 }

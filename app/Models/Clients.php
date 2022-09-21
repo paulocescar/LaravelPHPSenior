@@ -18,7 +18,8 @@ class Clients extends Model
         'name',
         'email',
         'cpf',
-        'birthday'
+        'birthday',
+        'address_id'
     ];
 
     /**
@@ -29,4 +30,9 @@ class Clients extends Model
     protected $hidden = [
         'cpf'
     ];
+
+
+    public function address(){
+        return $this->belongsTo(Addresses::class, 'address_id', 'id');
+    }
 }
