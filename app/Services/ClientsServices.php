@@ -37,8 +37,8 @@ class ClientsServices
         DB::beginTransaction();
         try{
             $this->clientsRepository->create($dto->toArray());
-            DB::commit();
             $this->forgetCache();
+            DB::commit();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
@@ -49,8 +49,8 @@ class ClientsServices
         DB::beginTransaction();
         try{
             $this->clientsRepository->updateById($id, $dto->toArray());
-            DB::commit();
             $this->forgetCache();
+            DB::commit();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
@@ -61,8 +61,8 @@ class ClientsServices
         DB::beginTransaction();
         try{
             $this->clientsRepository->deleteById($id);
-            DB::commit();
             $this->forgetCache();
+            DB::commit();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
