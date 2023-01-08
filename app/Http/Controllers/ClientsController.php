@@ -9,6 +9,7 @@ use App\DataTransferObjects\ClientsDTO;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\ClientsRequest;
 use App\Services\ClientsServices;
+use Illuminate\Support\Facades\Cache;
 
 
 class ClientsController extends Controller

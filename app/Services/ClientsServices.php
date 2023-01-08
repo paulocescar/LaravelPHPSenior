@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Repositories\ClientsRepository;
 use App\DataTransferObjects\ClientsDTO;
+use Illuminate\Support\Facades\Cache;
 use DB;
 /**
  * Class ClientsServices.
@@ -18,7 +19,14 @@ class ClientsServices
     }
 
     public function get(){
-        return $this->clientsRepository->getWith();
+
+        if (!Cache::has('clientes')) {
+            $clients = $this->clientsRepository->getWith();
+            Cache::put('clientes', $clients, 600); // 10 Minutes
+        } else {
+            $clients = Cache::get('clientes');
+        }
+        return $clients;
     }
     
     public function getById($id){
@@ -30,6 +38,7 @@ class ClientsServices
         try{
             $this->clientsRepository->create($dto->toArray());
             DB::commit();
+            $this->forgetCache();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
@@ -41,6 +50,7 @@ class ClientsServices
         try{
             $this->clientsRepository->updateById($id, $dto->toArray());
             DB::commit();
+            $this->forgetCache();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
@@ -52,9 +62,14 @@ class ClientsServices
         try{
             $this->clientsRepository->deleteById($id);
             DB::commit();
+            $this->forgetCache();
         }catch(Exception $e){
             DB::rollback();
             return $e->message();
         }
+    }
+
+    public function forgetCache(){
+        Cache::forget('clientes');
     }
 }
