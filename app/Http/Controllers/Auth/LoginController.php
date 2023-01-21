@@ -46,9 +46,9 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
         if (Auth::attempt($credentials)) {
 
-            $token = $request->user()->createToken($request->token_name);
+            $token = $request->user()->createToken('dashboard');
         
-            return ['token' => $token->plainTextToken];
+            return ['token' => $token->plainTextToken, 'user' => Auth::user()];
             // return Auth::user();
         }
         return response()->json(['error' => 'Unauthorized'], 401);
