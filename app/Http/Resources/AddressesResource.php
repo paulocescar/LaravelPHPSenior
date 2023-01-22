@@ -2,7 +2,6 @@
 
     namespace App\Http\Resources;
 
-    use App\Models\Addresses;
     use Illuminate\Http\Resources\Json\JsonResource;
 
     Class AddressesResource extends JsonResource

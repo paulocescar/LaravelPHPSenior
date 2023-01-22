@@ -24,6 +24,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [App\Http\Controllers\ClientsController::class, 'deleteById']);
     });
 
+    Route::prefix('bling')->group(function () {
+        Route::get('/', [App\Http\Controllers\BiingController::class, 'get']);
+        Route::post('', [App\Http\Controllers\BiingController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\BiingController::class, 'getById']);
+        Route::put('/{id}', [App\Http\Controllers\BiingController::class, 'updateById']);
+        Route::delete('/{id}', [App\Http\Controllers\BiingController::class, 'deleteById']);
+    });
+
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });

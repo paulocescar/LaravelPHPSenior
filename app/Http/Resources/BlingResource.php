@@ -5,7 +5,7 @@
     use Illuminate\Http\Resources\Json\JsonResource;
     use App\Http\Resources\AddressesResource;
 
-    Class ClientsResource extends JsonResource
+    Class BlingResource extends JsonResource
     {
         /**
          * Transfor json response in to array
@@ -16,7 +16,9 @@
                 'id'        => $this->id,
                 'name'      => $this->name,
                 'email'     => $this->email,
-                'api_key'     => $this->api_key,
+                'cpf'       => $this->cpf,  
+                'birthday'  => $this->birthday,
+                'addresses' => new AddressesResource($this->address),
             ];
         }
     }

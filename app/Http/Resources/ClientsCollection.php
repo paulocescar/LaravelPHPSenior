@@ -2,7 +2,6 @@
 
     namespace App\Http\Resources;
 
-    use App\Models\Clients;
     use Illuminate\Http\Resources\Json\ResourceCollection;
 
     Class ClientsCollection extends ResourceCollection
