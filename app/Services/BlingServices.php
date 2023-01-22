@@ -23,7 +23,7 @@ class BlingServices
             $bling = $this->blingRepository->get();
             Cache::put('bling', $bling, 600); // 10 Minutes
         } else {
-            $bling = Cache::get('blingRepository');
+            $bling = Cache::get('bling');
         }
         return $bling;
     }
@@ -32,9 +32,21 @@ class BlingServices
         return $this->blingRepository->getById((int)$id);
     }
 
+    public function getByUser(){
+        if (!Cache::has('blingUser')) {
+            $bling = $this->blingRepository->getByUser();
+            Cache::put('blingUser', $bling, 600); // 10 Minutes
+        } else {
+            $bling = Cache::get('blingUser');
+        }
+        return $bling;
+    }
+
     public function save(BlingDTO $dto){
         DB::beginTransaction();
         try{
+            $user =  auth('sanctum')->user();
+            $dto->user_id = $user->id;
             $this->blingRepository->create($dto->toArray());
             $this->forgetCache();
             DB::commit();
@@ -70,5 +82,6 @@ class BlingServices
 
     public function forgetCache(){
         Cache::forget('bling');
+        Cache::forget('blingUser');
     }
 }

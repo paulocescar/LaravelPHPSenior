@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('bling')->group(function () {
         Route::get('/', [App\Http\Controllers\BiingController::class, 'get']);
         Route::post('', [App\Http\Controllers\BiingController::class, 'store']);
+        Route::get('/user', [App\Http\Controllers\BiingController::class, 'getByUser']);
         Route::get('/{id}', [App\Http\Controllers\BiingController::class, 'getById']);
         Route::put('/{id}', [App\Http\Controllers\BiingController::class, 'updateById']);
         Route::delete('/{id}', [App\Http\Controllers\BiingController::class, 'deleteById']);

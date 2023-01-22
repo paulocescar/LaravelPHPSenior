@@ -31,6 +31,12 @@ class BiingController extends Controller
         return response()->json(new BlingResource($client));
     }
     
+    public function getByUser(): JsonResponse
+    {
+        $blingSettigs = $this->blingServices->getByUser();
+        return response()->json($blingSettigs);
+    }
+
     public function store(BlingRequest $request)
     {
         $dto = new BlingDTO($request->all());

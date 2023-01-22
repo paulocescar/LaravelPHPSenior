@@ -22,6 +22,7 @@ class Bling extends Authenticatable
         'name',
         'email',
         'api_key',
+        'user_id'
     ];
 
 }

@@ -17,7 +17,10 @@ class CreateSettingsBling extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('API_KEy')->unique();
+            $table->string('api_key')->unique();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
