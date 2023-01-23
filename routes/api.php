@@ -33,6 +33,22 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{id}', [App\Http\Controllers\BiingController::class, 'deleteById']);
     });
 
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [App\Http\Controllers\CategoryProductsController::class, 'get']);
+        Route::post('', [App\Http\Controllers\CategoryProductsController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\CategoryProductsController::class, 'getById']);
+        Route::put('/{id}', [App\Http\Controllers\CategoryProductsController::class, 'updateById']);
+        Route::delete('/{id}', [App\Http\Controllers\CategoryProductsController::class, 'deleteById']);
+    });
+
+    Route::prefix('products')->group(function () {
+        Route::get('/', [App\Http\Controllers\ProductsController::class, 'get']);
+        Route::post('', [App\Http\Controllers\ProductsController::class, 'store']);
+        Route::get('/{id}', [App\Http\Controllers\ProductsController::class, 'getById']);
+        Route::put('/{id}', [App\Http\Controllers\ProductsController::class, 'updateById']);
+        Route::delete('/{id}', [App\Http\Controllers\ProductsController::class, 'deleteById']);
+    });
+
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
