@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -46,10 +47,14 @@ class LoginController extends Controller
         $credentials = $request->only(['email', 'password']);
         if (Auth::attempt($credentials)) {
 
+            $request->user()->tokens()->delete();
             $token = $request->user()->createToken('dashboard');
-        
-            return ['token' => $token->plainTextToken, 'user' => Auth::user()];
-            // return Auth::user();
+
+            return [
+                'token' => $token->plainTextToken,
+                'expired_at' => Carbon::now()->addHours(3)->format('Y-d-m H:i:s'),
+                'user' => Auth::user()
+            ];
         }
         return response()->json(['error' => 'Unauthorized'], 401);
     }
