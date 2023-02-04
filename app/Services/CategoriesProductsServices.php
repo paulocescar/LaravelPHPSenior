@@ -18,10 +18,11 @@ class CategoriesProductsServices
         $this->categoryProductsRepository = $categoryProductsRepository;
     }
 
-    public function get(){
+    public function get($pages){
 
+        Cache::forget('categoriesProducts');
         if (!Cache::has('categoriesProducts')) {
-            $categopries = $this->categoryProductsRepository->get();
+            $categopries = $this->categoryProductsRepository->with(['categoriaPai'])->orderBy('id', 'DESC')->paginate($pages);
             Cache::put('categoriesProducts', $categopries, 600); // 10 Minutes
         } else {
             $categopries = Cache::get('categoriesProducts');

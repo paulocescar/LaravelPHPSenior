@@ -21,6 +21,6 @@ class Categories_products extends Model
     ];
 
     public function categoriaPai(){
-        return $this->belongsTo(Categories_products::class, 'id', 'id');
+        return $this->belongsTo(Categories_products::class, 'idCategoriaPai', 'id');
     }
 }

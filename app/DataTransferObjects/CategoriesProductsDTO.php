@@ -11,5 +11,5 @@ use Spatie\DataTransferObject\DataTransferObject;
 class CategoriesProductsDTO  extends DataTransferObject
 {
     public string $descricao;
-    public ?string $idCategoriaPai;
+    public ?int $idCategoriaPai;
 }

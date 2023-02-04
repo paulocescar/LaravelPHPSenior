@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [App\Http\Controllers\CategoryProductsController::class, 'get']);
+        Route::get('/pages/{pages}', [App\Http\Controllers\CategoryProductsController::class, 'get']);
         Route::post('', [App\Http\Controllers\CategoryProductsController::class, 'store']);
         Route::get('/{id}', [App\Http\Controllers\CategoryProductsController::class, 'getById']);
         Route::put('/{id}', [App\Http\Controllers\CategoryProductsController::class, 'updateById']);

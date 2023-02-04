@@ -20,9 +20,9 @@ class CategoryProductsController extends Controller
         $this->categoriesProductsServices = $categoriesProductsServices;
     }
 
-    public function get(): JsonResponse
+    public function get($pages): JsonResponse
     {
-        $client = $this->categoriesProductsServices->get();
+        $client = $this->categoriesProductsServices->get($pages);
         return response()->json(new CategoryProductsCollection($client->all()));
     }
 
